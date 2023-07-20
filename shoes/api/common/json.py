@@ -30,7 +30,7 @@ class ModelEncoder(DateEncoder, QuerySetEncoder, JSONEncoder):
                 try:
                     d["href"] = o.get_api_url()
                 except NoReverseMatch:
-                    pass
+                    print("this")
             for property in self.properties:
                 value = getattr(o, property)
                 if property in self.encoders:

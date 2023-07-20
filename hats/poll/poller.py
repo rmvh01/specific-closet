@@ -26,8 +26,7 @@ def poll():
     while True:
         print('Hats poller polling for data')
         try:
-            # Write your polling logic, here
-            pass
+            get_locations()
         except Exception as e:
             print(e, file=sys.stderr)
         time.sleep(60)
