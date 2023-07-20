@@ -19,4 +19,4 @@ class Shoe(models.Model):
     )
 
     def get_api_url(self):
-        return reverse("api_list_shoes", kwargs={"pk": self.pk}) # this is for the detial view, remove the kwargs parameter and related name to get the list view
+        return reverse("api_list_shoes") # this is for the detial view, remove the kwargs parameter and related name to get the list view
