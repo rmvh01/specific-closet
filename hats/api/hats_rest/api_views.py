@@ -10,7 +10,7 @@ from .models import Hat, LocationVO
 
 class LocationVODetailEncoder(ModelEncoder):
     model = LocationVO
-    properties = ["id", "closet_name", "import_href"]
+    properties = ["closet_name", "import_href"]
 
 
 class HatListEncoder(ModelEncoder):
@@ -44,26 +44,23 @@ class HatDetailEncoder(ModelEncoder):
 
 
 @require_http_methods(["GET", "POST"])
-def api_list_hat(request, location_vo_id=None):
+def api_list_hat(request):
     if request.method == "GET":
-        if location_vo_id is not None:
-            hats = Hat.objects.filter(location=location_vo_id)
-        else:
-            hats = Hat.objects.all()
+        hats = Hat.objects.all()
         return JsonResponse(
-            {"hats": hats},
+            hats,
             encoder=HatListEncoder,
+            safe=False
         )
     else:
         content = json.loads(request.body)
-
         try:
             location_href = content['locations']
             location = LocationVO.objects.get(import_href=location_href)
             content["locations"] = location
         except LocationVO.DoesNotExist:
             return JsonResponse(
-                {"message": content},
+                {"message": "invalid location"},
                 status=400,
             )
         hat = Hat.objects.create(**content)

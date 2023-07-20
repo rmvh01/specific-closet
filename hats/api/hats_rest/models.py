@@ -23,4 +23,4 @@ class Hat(models.Model):
         return self.name
 
     def get_api_url(self):
-        return reverse("api_show_hat")
+        detail_url = reverse("api_show_hat")+str(self.id)
