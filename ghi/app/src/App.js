@@ -14,6 +14,14 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<MainPage />} />
+          <Route path="shoes">
+            <Route index element={<ShoesList />} />
+            <Route path='create' element={<ShoesForm />} />
+          </Route>
+          <Route path="hats">
+            <Route index element={<HatList />} />
+            <Route path='create' element={<HatForm />} />
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>
