@@ -19,7 +19,7 @@ def get_bins():
     for bbin in content["bins"]:
         BinVO.objects.update_or_create(
             import_href=bbin["href"],
-            # defaults
+            defaults = 
         )
 
 
